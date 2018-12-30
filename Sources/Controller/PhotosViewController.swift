@@ -131,7 +131,7 @@ final class PhotosViewController : UICollectionViewController {
         self.photosDataSource?.selections.remove(at: position)
         
         // Get indexPaths of selected items
-        let selectedIndexPaths = photosDataSource.selections.compactMap({ (asset) -> IndexPath? in
+        let selectedIndexPaths = photosDataSource?.selections.compactMap({ (asset) -> IndexPath? in
             let index = photosDataSource.fetchResult.index(of: asset)
             guard index != NSNotFound else { return nil }
             return IndexPath(item: index, section: 1)
@@ -142,7 +142,7 @@ final class PhotosViewController : UICollectionViewController {
         collectionView.reloadItems(at: selectedIndexPaths)
         UIView.setAnimationsEnabled(true)
         
-        guard let cell = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? PhotoCell else { return false }
+        guard let cell = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? PhotoCell else { return }
         cell.photoSelected = false
     }
     
