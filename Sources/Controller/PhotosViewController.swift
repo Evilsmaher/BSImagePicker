@@ -128,14 +128,17 @@ final class PhotosViewController : UICollectionViewController {
     
     //Remove from selected positions
     func removeFromSelections(position:Int) {
-        self.photosDataSource?.selections.remove(at: position)
-        
+  
         // Get indexPaths of selected items
         let selectedIndexPaths = photosDataSource?.selections.compactMap({ (asset) -> IndexPath? in
             let index = photosDataSource?.fetchResult.index(of: asset)
             guard index != NSNotFound else { return nil }
             return IndexPath(item: index!, section: 1)
         })
+        
+        //Get the one to delete and then remove from overall
+        var deleteIndex = selectedIndexPaths?.remove(at: position)
+        self.photosDataSource?.selections.remove(at: position)
 
         // Reload selected cells to update their selection number
         UIView.setAnimationsEnabled(false)
