@@ -55,4 +55,8 @@ public extension UIViewController {
             self.present(imagePicker, animated: animated, completion: completion)
         }
     }
+    
+    func bs_removeFromSelected(_ imagePicker: BSImagePickerViewController, position:Int) {
+        imagePicker.photosViewController.removeFromSelections(position: position)
+    }
 }
