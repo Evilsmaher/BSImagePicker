@@ -129,19 +129,21 @@ final class PhotosViewController : UICollectionViewController {
     //Remove from selected positions
     func removeFromSelections(position:Int) {
         self.photosDataSource?.selections.remove(at: position)
-        let index = IndexPath(item: 0, section: 0)
-        let asset = self.photosDataSource?.fetchResult.object(at: index.row)
-        print(asset)
         
-        let index2 = IndexPath(item: 0, section: 1)
-        let asset2 = self.photosDataSource?.fetchResult.object(at: index.row)
-        print(asset2)
+        // Get indexPaths of selected items
+        let selectedIndexPaths = photosDataSource.selections.compactMap({ (asset) -> IndexPath? in
+            let index = photosDataSource.fetchResult.index(of: asset)
+            guard index != NSNotFound else { return nil }
+            return IndexPath(item: index, section: 1)
+        })
+
+        // Reload selected cells to update their selection number
+        UIView.setAnimationsEnabled(false)
+        collectionView.reloadItems(at: selectedIndexPaths)
+        UIView.setAnimationsEnabled(true)
         
-        if let closure = self.deselectionClosure {
-            DispatchQueue.global().async {
-                closure(asset!)
-            }
-        }
+        guard let cell = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? PhotoCell else { return false }
+        cell.photoSelected = false
     }
     
     // MARK: Button actions
