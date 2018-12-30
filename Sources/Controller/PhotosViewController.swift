@@ -101,7 +101,7 @@ final class PhotosViewController : UICollectionViewController {
         navigationItem.titleView = albumTitleView
 
         if let album = albumsDataSource.fetchResults.first?.firstObject {
-            initializePhotosDataSource(album, selections: defaultSelections)
+            //initializePhotosDataSource(album, selections: defaultSelections)
             updateAlbumTitle(album)
             collectionView?.reloadData()
         }
@@ -242,7 +242,7 @@ final class PhotosViewController : UICollectionViewController {
             NSSortDescriptor(key: "creationDate", ascending: false)
         ]
         fetchOptions.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.image.rawValue)
-        //initializePhotosDataSourceWithFetchResult(PHAsset.fetchAssets(in: album, options: fetchOptions), selections: selections)
+        initializePhotosDataSourceWithFetchResult(PHAsset.fetchAssets(in: album, options: fetchOptions), selections: selections)
     }
     
     @objc func initializePhotosDataSourceWithFetchResult(_ fetchResult: PHFetchResult<PHAsset>, selections: PHFetchResult<PHAsset>? = nil) {
