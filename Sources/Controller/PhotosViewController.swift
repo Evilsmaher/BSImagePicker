@@ -126,6 +126,11 @@ final class PhotosViewController : UICollectionViewController {
         updateDoneButton()
     }
     
+    //Remove from selected positions
+    func removeFromSelections(position:Int) {
+        self.photosDataSource?.selections.remove(at: position)
+    }
+    
     // MARK: Button actions
     @objc func cancelButtonPressed(_ sender: UIBarButtonItem) {
         guard let closure = cancelClosure, let photosDataSource = photosDataSource else {
