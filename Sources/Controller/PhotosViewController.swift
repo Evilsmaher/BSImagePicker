@@ -142,7 +142,7 @@ final class PhotosViewController : UICollectionViewController {
         collectionView.reloadItems(at: selectedIndexPaths!)
         UIView.setAnimationsEnabled(true)
         
-        guard let cell = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? PhotoCell else { return }
+        guard let cell = collectionView.cellForItem(at: IndexPath(item: 0, section: 1)) as? PhotoCell else { return }
         cell.photoSelected = false
     }
     
