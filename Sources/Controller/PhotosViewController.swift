@@ -211,14 +211,15 @@ final class PhotosViewController : UICollectionViewController {
     @objc func updateDoneButton() {
         guard let photosDataSource = photosDataSource else { return }
 
-        if photosDataSource.selections.count > 0 {
+        //if photosDataSource.selections.count > 0 {
             doneBarButton = UIBarButtonItem(title: "\(doneBarButtonTitle) (\(photosDataSource.selections.count))", style: .done, target: doneBarButton?.target, action: doneBarButton?.action)
-        } else {
-            doneBarButton = UIBarButtonItem(title: doneBarButtonTitle, style: .done, target: doneBarButton?.target, action: doneBarButton?.action)
-        }
+        //} else {
+            //doneBarButton = UIBarButtonItem(title: doneBarButtonTitle, style: .done, target: doneBarButton?.target, action: doneBarButton?.action)
+        //}
 
         // Enabled?
-        doneBarButton?.isEnabled = photosDataSource.selections.count > 0
+        //doneBarButton?.isEnabled = photosDataSource.selections.count > 0
+        doneBarButton?.isEnabled = true
 
         navigationItem.rightBarButtonItem = doneBarButton
     }
