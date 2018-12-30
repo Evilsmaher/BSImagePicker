@@ -101,7 +101,7 @@ final class PhotosViewController : UICollectionViewController {
         navigationItem.titleView = albumTitleView
 
         if let album = albumsDataSource.fetchResults.first?.firstObject {
-            //initializePhotosDataSource(album, selections: defaultSelections)
+            initializePhotosDataSource(album, selections: defaultSelections)
             updateAlbumTitle(album)
             collectionView?.reloadData()
         }
