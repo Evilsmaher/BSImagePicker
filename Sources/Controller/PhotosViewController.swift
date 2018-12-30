@@ -132,14 +132,14 @@ final class PhotosViewController : UICollectionViewController {
         
         // Get indexPaths of selected items
         let selectedIndexPaths = photosDataSource?.selections.compactMap({ (asset) -> IndexPath? in
-            let index = photosDataSource.fetchResult.index(of: asset)
+            let index = photosDataSource?.fetchResult.index(of: asset)
             guard index != NSNotFound else { return nil }
             return IndexPath(item: index, section: 1)
         })
 
         // Reload selected cells to update their selection number
         UIView.setAnimationsEnabled(false)
-        collectionView.reloadItems(at: selectedIndexPaths)
+        collectionView.reloadItems(at: selectedIndexPaths!)
         UIView.setAnimationsEnabled(true)
         
         guard let cell = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? PhotoCell else { return }
