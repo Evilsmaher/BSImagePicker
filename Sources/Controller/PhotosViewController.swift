@@ -301,6 +301,7 @@ extension PhotosViewController {
 
             // Reload selected cells to update their selection number
             UIView.setAnimationsEnabled(false)
+            print("Reload eselected")
             collectionView.reloadItems(at: selectedIndexPaths)
             UIView.setAnimationsEnabled(true)
 
