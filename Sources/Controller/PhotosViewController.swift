@@ -129,6 +129,14 @@ final class PhotosViewController : UICollectionViewController {
     //Remove from selected positions
     func removeFromSelections(position:Int) {
         self.photosDataSource?.selections.remove(at: position)
+        let index = IndexPath(item: 0, section: 1)
+        let asset = self.photosDataSource?.fetchResult.object(at: index.row)
+        
+        if let closure = self.deselectionClosure {
+            DispatchQueue.global().async {
+                closure(asset!)
+            }
+        }
     }
     
     // MARK: Button actions
