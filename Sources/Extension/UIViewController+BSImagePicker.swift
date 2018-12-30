@@ -56,7 +56,7 @@ public extension UIViewController {
         }
     }
     
-    func bs_removeFromSelected(_ imagePicker: BSImagePickerViewController, position:Int) {
+    @objc func bs_removeFromSelected(_ imagePicker: BSImagePickerViewController, position:Int) {
         imagePicker.photosViewController.removeFromSelections(position: position)
     }
 }
