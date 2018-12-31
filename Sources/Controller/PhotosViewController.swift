@@ -171,6 +171,11 @@ final class PhotosViewController : UICollectionViewController {
             })
             print("NotSelected: \(selectedIndexPathsPrevious)")
             
+            // Reload selected cells to update their selection number
+            UIView.setAnimationsEnabled(false)
+            collectionView.reloadItems(at: selectedIndexPaths)
+            UIView.setAnimationsEnabled(true)
+            
             //Unhighlight old ones
             for index in selectedIndexPathsPrevious {
                 guard let cell = self.collectionView.cellForItem(at: index) as? PhotoCell else { return }
