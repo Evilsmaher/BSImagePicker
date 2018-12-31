@@ -156,6 +156,33 @@ final class PhotosViewController : UICollectionViewController {
             return
         }
         DispatchQueue.global().async {
+            
+            var selectedIndexPaths = photosDataSource.selections.compactMap({ (asset) -> IndexPath? in
+                let index = photosDataSource.fetchResult.index(of: asset)
+                guard index != NSNotFound else { return nil }
+                return IndexPath(item: index, section: 1)
+            })
+            
+            var selectedIndexPathsPrevious = photosDataSource.previousSelections.compactMap({ (asset) -> IndexPath? in
+                let index = photosDataSource.fetchResult.index(of: asset)
+                guard index != NSNotFound else { return nil }
+                return IndexPath(item: index, section: 1)
+            })
+            
+            //Unhighlight old ones
+            for index in selectedIndexPathsPrevious {
+                guard let cell = self.collectionView.cellForItem(at: index) as? PhotoCell else { return }
+                cell.photoSelected = false
+            }
+            //Re highlight new ones
+            for index in selectedIndexPaths {
+                guard let cell = self.collectionView.cellForItem(at: index) as? PhotoCell else { return }
+                cell.photoSelected = true
+            }
+            
+            //Reset
+            photosDataSource.selections = photosDataSource.previousSelections
+
             closure(photosDataSource.selections)
         }
         
@@ -169,6 +196,7 @@ final class PhotosViewController : UICollectionViewController {
         }
         
         DispatchQueue.global().async {
+            photosDataSource.previousSelections = photosDataSource.selections
             closure(photosDataSource.selections)
         }
         
