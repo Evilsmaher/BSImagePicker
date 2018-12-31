@@ -172,12 +172,12 @@ final class PhotosViewController : UICollectionViewController {
             //Unhighlight old ones
             for index in selectedIndexPathsPrevious {
                 guard let cell = self.collectionView.cellForItem(at: index) as? PhotoCell else { return }
-                cell.photoSelected = false
+                cell.photoSelected = true
             }
             //Re highlight new ones
             for index in selectedIndexPaths {
                 guard let cell = self.collectionView.cellForItem(at: index) as? PhotoCell else { return }
-                cell.photoSelected = true
+                cell.photoSelected = false
             }
             
             //Reset
