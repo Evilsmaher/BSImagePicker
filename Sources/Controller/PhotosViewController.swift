@@ -169,12 +169,6 @@ final class PhotosViewController : UICollectionViewController {
                 return IndexPath(item: index, section: 1)
             })
             
-            // Reload selected cells to update their selection number
-            UIView.setAnimationsEnabled(false)
-            self.collectionView.reloadItems(at: selectedIndexPaths)
-            self.collectionView.reloadItems(at: selectedIndexPathsPrevious)
-            UIView.setAnimationsEnabled(true)
-            
             //Unhighlight old ones
             for index in selectedIndexPathsPrevious {
                 guard let cell = self.collectionView.cellForItem(at: index) as? PhotoCell else { return }
@@ -185,6 +179,12 @@ final class PhotosViewController : UICollectionViewController {
                 guard let cell = self.collectionView.cellForItem(at: index) as? PhotoCell else { return }
                 cell.photoSelected = false
             }
+            
+            // Reload selected cells to update their selection number
+            UIView.setAnimationsEnabled(false)
+            self.collectionView.reloadItems(at: selectedIndexPaths)
+            self.collectionView.reloadItems(at: selectedIndexPathsPrevious)
+            UIView.setAnimationsEnabled(true)
             
             //Reset
             photosDataSource.selections = photosDataSource.previousSelections
