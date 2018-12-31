@@ -156,40 +156,7 @@ final class PhotosViewController : UICollectionViewController {
             return
         }
         DispatchQueue.global().async {
-            /*
-            let selectedIndexPaths = photosDataSource.selections.compactMap({ (asset) -> IndexPath? in
-                let index = photosDataSource.fetchResult.index(of: asset)
-                guard index != NSNotFound else { return nil }
-                return IndexPath(item: index, section: 1)
-            })
-            print("Selected: \(selectedIndexPaths)")
-            
-            let selectedIndexPathsPrevious = photosDataSource.previousSelections.compactMap({ (asset) -> IndexPath? in
-                let index = photosDataSource.fetchResult.index(of: asset)
-                guard index != NSNotFound else { return nil }
-                return IndexPath(item: index, section: 1)
-            })
-            print("NotSelected: \(selectedIndexPathsPrevious)")
-            
-            // Reload selected cells to update their selection number
-            UIView.setAnimationsEnabled(false)
-            self.collectionView.reloadItems(at: selectedIndexPathsPrevious)
-            UIView.setAnimationsEnabled(true)
-            
-            //Unhighlight old ones
-            for index in selectedIndexPathsPrevious {
-                guard let cell = self.collectionView.cellForItem(at: index) as? PhotoCell else { return }
-                cell.photoSelected = true
-            }
-            //Re highlight new ones
-            for index in selectedIndexPaths {
-                guard let cell = self.collectionView.cellForItem(at: index) as? PhotoCell else { return }
-                cell.photoSelected = false
-            }
-            
-            //Reset
-            photosDataSource.selections = photosDataSource.previousSelections
-*/
+
             closure(photosDataSource.selections)
         }
         
