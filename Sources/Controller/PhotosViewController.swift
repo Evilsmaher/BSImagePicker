@@ -157,17 +157,23 @@ final class PhotosViewController : UICollectionViewController {
         }
         DispatchQueue.global().async {
             
-            var selectedIndexPaths = photosDataSource.selections.compactMap({ (asset) -> IndexPath? in
+            let selectedIndexPaths = photosDataSource.selections.compactMap({ (asset) -> IndexPath? in
                 let index = photosDataSource.fetchResult.index(of: asset)
                 guard index != NSNotFound else { return nil }
                 return IndexPath(item: index, section: 1)
             })
             
-            var selectedIndexPathsPrevious = photosDataSource.previousSelections.compactMap({ (asset) -> IndexPath? in
+            let selectedIndexPathsPrevious = photosDataSource.previousSelections.compactMap({ (asset) -> IndexPath? in
                 let index = photosDataSource.fetchResult.index(of: asset)
                 guard index != NSNotFound else { return nil }
                 return IndexPath(item: index, section: 1)
             })
+            
+            // Reload selected cells to update their selection number
+            UIView.setAnimationsEnabled(false)
+            collectionView.reloadItems(at: selectedIndexPaths)
+            collectionView.reloadItems(at: selectedIndexPathsPrevious)
+            UIView.setAnimationsEnabled(true)
             
             //Unhighlight old ones
             for index in selectedIndexPathsPrevious {
