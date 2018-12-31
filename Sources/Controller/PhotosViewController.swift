@@ -173,7 +173,7 @@ final class PhotosViewController : UICollectionViewController {
             
             // Reload selected cells to update their selection number
             UIView.setAnimationsEnabled(false)
-            self.collectionView.reloadItems(at: selectedIndexPaths)
+            self.collectionView.reloadItems(at: selectedIndexPathsPrevious)
             UIView.setAnimationsEnabled(true)
             
             //Unhighlight old ones
