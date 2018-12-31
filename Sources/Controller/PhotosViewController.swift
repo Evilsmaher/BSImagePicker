@@ -180,12 +180,6 @@ final class PhotosViewController : UICollectionViewController {
                 cell.photoSelected = false
             }
             
-            // Reload selected cells to update their selection number
-            UIView.setAnimationsEnabled(false)
-            self.collectionView.reloadItems(at: selectedIndexPaths)
-            self.collectionView.reloadItems(at: selectedIndexPathsPrevious)
-            UIView.setAnimationsEnabled(true)
-            
             //Reset
             photosDataSource.selections = photosDataSource.previousSelections
 
