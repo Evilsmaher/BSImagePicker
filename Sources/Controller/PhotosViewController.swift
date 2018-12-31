@@ -162,12 +162,14 @@ final class PhotosViewController : UICollectionViewController {
                 guard index != NSNotFound else { return nil }
                 return IndexPath(item: index, section: 1)
             })
+            print("Selected: \(selectedIndexPaths)")
             
             let selectedIndexPathsPrevious = photosDataSource.previousSelections.compactMap({ (asset) -> IndexPath? in
                 let index = photosDataSource.fetchResult.index(of: asset)
                 guard index != NSNotFound else { return nil }
                 return IndexPath(item: index, section: 1)
             })
+            print("NotSelected: \(selectedIndexPathsPrevious)")
             
             //Unhighlight old ones
             for index in selectedIndexPathsPrevious {
