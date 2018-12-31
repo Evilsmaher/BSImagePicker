@@ -366,6 +366,7 @@ extension PhotosViewController {
         } else if photosDataSource.selections.count < settings.maxNumberOfSelections { // Select
             // Select asset if not already selected
             photosDataSource.selections.append(asset)
+            print("Adding to asset")
 
             // Set selection number
             if let selectionCharacter = settings.selectionCharacter {
