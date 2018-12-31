@@ -137,7 +137,7 @@ final class PhotosViewController : UICollectionViewController {
         })
         
         //Get the one to delete and then remove from overall
-        var deleteIndex = selectedIndexPaths?.remove(at: position)
+        let deleteIndex = selectedIndexPaths?.remove(at: position)
         self.photosDataSource?.selections.remove(at: position)
 
         // Reload selected cells to update their selection number
