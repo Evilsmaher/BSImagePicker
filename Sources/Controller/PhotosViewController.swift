@@ -161,6 +161,8 @@ final class PhotosViewController : UICollectionViewController {
             guard index != NSNotFound else { return nil }
             return IndexPath(item: index, section: 1)
         })
+
+        print("Deleting Current \(selectedIndexPaths)")        
         
         // Reload selected cells to update their selection number
         UIView.setAnimationsEnabled(false)
@@ -177,6 +179,8 @@ final class PhotosViewController : UICollectionViewController {
             guard index != NSNotFound else { return nil }
             return IndexPath(item: index, section: 1)
         })
+        
+        print("Going back to \(selectedIndexPathsPrevious)")
 
         // Reload selected cells to update their selection number
         UIView.setAnimationsEnabled(false)
