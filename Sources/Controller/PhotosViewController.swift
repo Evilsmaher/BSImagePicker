@@ -172,7 +172,7 @@ final class PhotosViewController : UICollectionViewController {
             cell.photoSelected = false
         }
         
-        let selectedIndexPathsPrevious = photosDataSource.selections.compactMap({ (asset) -> IndexPath? in
+        let selectedIndexPathsPrevious = photosDataSource.previousSelections.compactMap({ (asset) -> IndexPath? in
             let index = photosDataSource.fetchResult.index(of: asset)
             guard index != NSNotFound else { return nil }
             return IndexPath(item: index, section: 1)
