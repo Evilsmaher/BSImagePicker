@@ -171,7 +171,7 @@ final class PhotosViewController : UICollectionViewController {
             guard let cell = collectionView.cellForItem(at: index) as? PhotoCell else { return }
             cell.photoSelected = false
         }
-        
+        /*
         let selectedIndexPathsPrevious = photosDataSource.selections.compactMap({ (asset) -> IndexPath? in
             let index = photosDataSource.fetchResult.index(of: asset)
             guard index != NSNotFound else { return nil }
@@ -187,7 +187,7 @@ final class PhotosViewController : UICollectionViewController {
             guard let cell = collectionView.cellForItem(at: index) as? PhotoCell else { return }
             cell.photoSelected = true
         }
-        
+        */
         photosDataSource.selections = photosDataSource.previousSelections
         
         DispatchQueue.global().async {
