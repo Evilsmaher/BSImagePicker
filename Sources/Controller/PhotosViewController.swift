@@ -155,10 +155,6 @@ final class PhotosViewController : UICollectionViewController {
             dismiss(animated: true, completion: nil)
             return
         }
-        DispatchQueue.global().async {
-
-            closure(photosDataSource.selections)
-        }
         
         let selectedIndexPaths = photosDataSource.selections.compactMap({ (asset) -> IndexPath? in
             let index = photosDataSource.fetchResult.index(of: asset)
@@ -191,6 +187,13 @@ final class PhotosViewController : UICollectionViewController {
 //            guard let cell = collectionView.cellForItem(at: index) as? PhotoCell else { return }
 //            cell.photoSelected = true
 //        }
+        
+        photosDataSource.selections = photosDataSource.selectionsPrevious
+        
+        DispatchQueue.global().async {
+
+            closure(photosDataSource.selections)
+        }
         
         dismiss(animated: true, completion: nil)
     }
