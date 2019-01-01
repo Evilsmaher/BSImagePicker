@@ -179,10 +179,10 @@ final class PhotosViewController : UICollectionViewController {
         })
 
         // Reload selected cells to update their selection number
-        UIView.setAnimationsEnabled(false)
+        /*UIView.setAnimationsEnabled(false)
         collectionView.reloadItems(at: selectedIndexPathsPrevious)
         UIView.setAnimationsEnabled(true)
-
+*/
         for index in selectedIndexPathsPrevious {
             guard let cell = collectionView.cellForItem(at: index) as? PhotoCell else { return }
             cell.photoSelected = true
