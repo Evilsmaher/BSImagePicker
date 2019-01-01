@@ -160,6 +160,38 @@ final class PhotosViewController : UICollectionViewController {
             closure(photosDataSource.selections)
         }
         
+        let selectedIndexPaths = photosDataSource.selections.compactMap({ (asset) -> IndexPath? in
+            let index = photosDataSource.fetchResult.index(of: asset)
+            guard index != NSNotFound else { return nil }
+            return IndexPath(item: index, section: 1)
+        })
+        
+        // Reload selected cells to update their selection number
+        UIView.setAnimationsEnabled(false)
+        collectionView.reloadItems(at: selectedIndexPaths)
+        UIView.setAnimationsEnabled(true)
+        
+        for index in selectedIndexPaths {
+            guard let cell = collectionView.cellForItem(at: index) as? PhotoCell else { return }
+            cell.photoSelected = false
+        }
+        
+//        let selectedIndexPathsPrevious = photosDataSource.selections.compactMap({ (asset) -> IndexPath? in
+//            let index = photosDataSource.fetchResult.index(of: asset)
+//            guard index != NSNotFound else { return nil }
+//            return IndexPath(item: index, section: 1)
+//        })
+//
+//        // Reload selected cells to update their selection number
+//        UIView.setAnimationsEnabled(false)
+//        collectionView.reloadItems(at: selectedIndexPathsPrevious)
+//        UIView.setAnimationsEnabled(true)
+//
+//        for index in selectedIndexPathsPrevious {
+//            guard let cell = collectionView.cellForItem(at: index) as? PhotoCell else { return }
+//            cell.photoSelected = true
+//        }
+        
         dismiss(animated: true, completion: nil)
     }
     
