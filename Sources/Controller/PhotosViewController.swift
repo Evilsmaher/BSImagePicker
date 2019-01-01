@@ -172,21 +172,21 @@ final class PhotosViewController : UICollectionViewController {
             cell.photoSelected = false
         }
         
-//        let selectedIndexPathsPrevious = photosDataSource.selections.compactMap({ (asset) -> IndexPath? in
-//            let index = photosDataSource.fetchResult.index(of: asset)
-//            guard index != NSNotFound else { return nil }
-//            return IndexPath(item: index, section: 1)
-//        })
-//
-//        // Reload selected cells to update their selection number
-//        UIView.setAnimationsEnabled(false)
-//        collectionView.reloadItems(at: selectedIndexPathsPrevious)
-//        UIView.setAnimationsEnabled(true)
-//
-//        for index in selectedIndexPathsPrevious {
-//            guard let cell = collectionView.cellForItem(at: index) as? PhotoCell else { return }
-//            cell.photoSelected = true
-//        }
+        let selectedIndexPathsPrevious = photosDataSource.selections.compactMap({ (asset) -> IndexPath? in
+            let index = photosDataSource.fetchResult.index(of: asset)
+            guard index != NSNotFound else { return nil }
+            return IndexPath(item: index, section: 1)
+        })
+
+        // Reload selected cells to update their selection number
+        UIView.setAnimationsEnabled(false)
+        collectionView.reloadItems(at: selectedIndexPathsPrevious)
+        UIView.setAnimationsEnabled(true)
+
+        for index in selectedIndexPathsPrevious {
+            guard let cell = collectionView.cellForItem(at: index) as? PhotoCell else { return }
+            cell.photoSelected = true
+        }
         
         photosDataSource.selections = photosDataSource.previousSelections
         
