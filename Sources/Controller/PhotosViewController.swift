@@ -188,7 +188,7 @@ final class PhotosViewController : UICollectionViewController {
             cell.photoSelected = true
         }
         
-        photosDataSource.selections = [PHAsset]()
+        photosDataSource.selections = photosDataSource.previousSelections
         
         DispatchQueue.global().async {
 
